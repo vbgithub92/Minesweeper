@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">Minesweeper</string>
+    <string name="app_name">Mine Sweeper</string>
+    <string name="play_button">Play</string>
+    <string name="easy">Easy</string>
+    <string name="normal">Normal</string>
+    <string name="hard">Hard</string>
+    <string name="mines_left">Mines Left</string>
+    <string name="timer">Timer</string>
+    <string name="victory">Victory!</string>
+    <string name="defeat">Defeat</string>
+    <string name="finished_in">Finished In</string>
+    <string name="game_result">Game Result</string>
+    <string name="restart">Restart</string>
+    <string name="main_menu">Main Menu</string>
 </resources>

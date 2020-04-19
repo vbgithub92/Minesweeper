@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="60dp"
+    tools:context=".ResultActivity">
+
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingVertical="20dp"
+        android:orientation="vertical"
+
+        >
+
+        <ImageView
+            android:id="@+id/restartIcon"
+            android:src="@drawable/restart_icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_result"
+            android:textSize="40dp"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+        </Space>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mines_left"
+            android:textSize="26sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/minesLeftAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="26sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+        </Space>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/finished_in"
+            android:textSize="26sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/finishedIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="26sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+        </Space>
+
+        <Button
+            android:id="@+id/restartButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="@string/restart"
+            android:textSize="26sp"
+            android:background="@drawable/roundedbutton"
+            android:onClick="restartButtonClicked"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+        </Space>
+
+
+        <Button
+            android:id="@+id/mainMenuButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="@string/main_menu"
+            android:textSize="26sp"
+            android:background="@drawable/roundedbutton"
+            android:onClick="mainMenuButtonClicked"/>
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
+
