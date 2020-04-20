@@ -18,10 +18,14 @@ import androiddev.minesweeper.logic.Difficulty;
 public class ResultActivity extends AppCompatActivity {
 
 
+    final static String BUNDLE_KEY = "BUNDLE_KEY";
+    final static String DIFFICULTY_KEY = "DIFFICULTY_KEY";
+
     private ImageView resultLogo;
     private TextView resultTextView;
     private TextView minesLeftTextView;
     private TextView finishedInTextView;
+    private Difficulty difficulty;
 
     private Bundle bundle;
 
@@ -41,6 +45,7 @@ public class ResultActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         bundle = ((Intent) intent).getBundleExtra(GameActivity.BUNDLE_KEY);
+        difficulty = new Difficulty(bundle.getString(DIFFICULTY_KEY));
 
         initializeViews();
 
@@ -48,26 +53,14 @@ public class ResultActivity extends AppCompatActivity {
 
 
     public void restartButtonClicked(View view) {
-
         vibe.vibrate(80);
-        /*
-        // TODO FIX!!!
-        // Need to add difficulty to bundle so the game restarts correctly
-
-        Intent intent = new Intent(this, GameActivity.class);
-        Bundle b = new Bundle();
-        //intent.putExtra(BUNDLE_KEY, b);
-
-        startActivity(intent);
-        */
-
+        restart();
     }
 
     public void mainMenuButtonClicked(View view) {
 
         vibe.vibrate(80);
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        mainMenu();
     }
 
     private void initializeViews(){
@@ -78,14 +71,31 @@ public class ResultActivity extends AppCompatActivity {
         {
             resultLogo.setImageResource(R.drawable.win_logo);
             resultTextView.setText(R.string.victory);
+            minesLeftTextView.setText("0");
         }
         else
         {
             resultLogo.setImageResource(R.drawable.lost_logo);
             resultTextView.setText(R.string.defeat);
+            minesLeftTextView.setText(bundle.getString(GameActivity.MINES_LEFT_KEY));
         }
-
-        minesLeftTextView.setText(bundle.getString(GameActivity.MINES_LEFT_KEY));
         finishedInTextView.setText(bundle.getString(GameActivity.FINISHED_IN_KEY));
+    }
+
+
+    public void restart() {
+        Intent intent = new Intent(this, GameActivity.class);
+        Bundle b = new Bundle();
+        b.putString(DIFFICULTY_KEY, difficulty.getDifficultyName());
+
+        intent.putExtra(BUNDLE_KEY, b);
+
+        startActivity(intent);
+
+    }
+
+    public void mainMenu(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

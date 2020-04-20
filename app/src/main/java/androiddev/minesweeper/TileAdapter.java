@@ -52,15 +52,20 @@ public class TileAdapter extends BaseAdapter {
 
         String debugString;
 
-        if(tile.isMine()){
-            tileView.setText("M");
-            //tileView.setBackgroundDrawable(R.drawable.flag);
-        }
-        else
-        {
-            tileView.setText(String.valueOf(tile.getAdjacentMinesNum()));
+        tileView.setText("");
+
+        if (tile.isFlagged()) {
+            tileView.setText("FG");
         }
 
+        if (tile.isTapped()) {
+            if (tile.isMine()) {
+                tileView.setText("M");
+                //tileView.setBackgroundDrawable(R.drawable.flag);
+            } else {
+                tileView.setText(String.valueOf(tile.getAdjacentMinesNum()));
+            }
+        }
         return tileView;
     }
 }
