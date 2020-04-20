@@ -103,24 +103,24 @@ public class GameActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
                 vibe.vibrate(80);
-                Log.d("FlAG","Flagged tile at pos " + position);
+                Log.d("FlAG", "Flagged tile at pos " + position);
 
-                Tile FlaggedTile = (Tile)gridView.getAdapter().getItem(position);
+                Tile FlaggedTile = (Tile) gridView.getAdapter().getItem(position);
                 theGame.flagTile(FlaggedTile);
 
-
                 // Check game end
-                if(theGame.isGameOver()) {
-                    if(theGame.isGameWon())
+                if (theGame.isGameOver()) {
+                    if (theGame.isGameWon())
                         finishGame(true);
                     else
                         finishGame(false);
                 }
-
+                minesLeftTextView.setText(String.valueOf(theGame.getDifficulty().getNumberOfMines() - theGame.getFlaggedTilesCounter()));
                 tileAdapter.notifyDataSetChanged();
                 return true;
             }
         });
+
 
     }
 

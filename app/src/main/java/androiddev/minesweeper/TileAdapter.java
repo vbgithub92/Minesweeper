@@ -1,6 +1,7 @@
 package androiddev.minesweeper;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,12 +51,11 @@ public class TileAdapter extends BaseAdapter {
 
         Tile tile = game.getTile(position);
 
-        String debugString;
-
         tileView.setText("");
 
         if (tile.isFlagged()) {
             tileView.setText("FG");
+            //tileView.setBackgroundDrawable();
         }
 
         if (tile.isTapped()) {
@@ -63,7 +63,44 @@ public class TileAdapter extends BaseAdapter {
                 tileView.setText("M");
                 //tileView.setBackgroundDrawable(R.drawable.flag);
             } else {
-                tileView.setText(String.valueOf(tile.getAdjacentMinesNum()));
+
+                tileView.setBackgroundColor(Color.LTGRAY);
+                int adjMines = tile.getAdjacentMinesNum();
+
+                int textColor = Color.parseColor("#FFFFFF");
+
+                switch(adjMines) {
+                    case 0 :
+                        break;
+                    case 1:
+                        textColor = Color.BLUE;
+                        break;
+                    case 2:
+                        textColor = Color.parseColor("#009933"); // Dark Green
+                        break;
+                    case 3:
+                        textColor = Color.RED;
+                        break;
+                    case 4:
+                        textColor = Color.parseColor("#6600cc"); // Purple
+                        break;
+                    case 5:
+                        textColor = Color.MAGENTA;
+                    case 6:
+                        textColor = Color.CYAN;
+                    case 7:
+                        textColor = Color.BLACK;
+                    case 8:
+                        textColor = Color.LTGRAY;
+                    default:
+                        break;
+                }
+
+                if(adjMines != 0) {
+                    // change color
+                    tileView.setTextColor(textColor);
+                    tileView.setText(String.valueOf(tile.getAdjacentMinesNum()));
+                }
             }
         }
         return tileView;
