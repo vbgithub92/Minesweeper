@@ -12,7 +12,6 @@ import androidx.appcompat.widget.AppCompatButton;
 
 public class TileView extends AppCompatButton {
 
-
     public TileView(Context context) {
         super(context);
 
@@ -22,4 +21,5 @@ public class TileView extends AppCompatButton {
         setBackgroundColor(Color.WHITE);
 
     }
+
 }
