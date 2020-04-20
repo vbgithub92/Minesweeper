@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="#AE4040"
+            android:background="@color/colorAccent"
             android:columnCount="3"
             android:rowCount="2"
             >
@@ -89,6 +89,10 @@
 
         </GridLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
+
         <GridView
             android:id="@+id/gridView"
             android:background="@color/colorAccent"
@@ -121,14 +125,6 @@
 
             </Button>
 
-            <TextView
-                android:id="@+id/devResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="@string/game_result">
-
-            </TextView>
         </LinearLayout>
 
     </LinearLayout>

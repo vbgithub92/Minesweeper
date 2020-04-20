@@ -10,7 +10,11 @@ public class Game {
     private int flaggedTilesCounter = 0;
     private boolean isFirstMove = true;
     private long gameStrTime = 0;
+
     private long gameTime = 0;
+
+    private boolean gameOver;
+    private boolean gameWon;
 
     private Difficulty difficulty;
 
@@ -42,6 +46,7 @@ public class Game {
                 setMines(difficulty.getNumberOfMines());
                 gameStrTime = System.currentTimeMillis();
             }
+            Log.d("tap", "tapTile: " + tile.getAdjacentMinesNum());
             if (tile.tapTile()) // hit a mine
                 endGame(false);
             else if (tile.getAdjacentMinesNum() == 0) {
@@ -90,7 +95,7 @@ public class Game {
             for (int i = 0; i < tiles.length; i++) {
                 for (int j = 0; j < tiles[0].length; j++) {
                     if (!tiles[i][j].isTapped() && !tiles[i][j].isMine() && numOfMines > 0) {
-                        if (new Random().nextInt(100) < 25) {
+                        if (new Random().nextInt(100) < 10) {
                             tiles[i][j].setMine(true);
                             numOfMines--;
                         }
@@ -100,6 +105,8 @@ public class Game {
         }
         setAdjacentMinesCount();
     }
+
+
 
     private void setAdjacentMinesCount() {
         for (int i = 0; i < tiles.length; i++) {
@@ -145,8 +152,12 @@ public class Game {
         gameTime = System.currentTimeMillis() - gameStrTime;
         if (victory) {
             // victory logic
+            gameOver = true;
+            gameWon = true;
         } else {
             // loosing logic
+            gameOver = true;
+            gameWon = false;
         }
     }
 
@@ -159,7 +170,7 @@ public class Game {
     }
 
     public Tile getTile(int position) {
-        return tiles[position % tiles.length][position/tiles.length];
+        return tiles[position / tiles[0].length][position % tiles[0].length];
     }
 
     private void initializeTiles(Tile[][] tiles) {
@@ -171,5 +182,15 @@ public class Game {
     public int getNumOfMinesLeft() {
         return this.numOfMinesLeft;
     }
+
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public boolean isGameWon() {
+        return gameWon;
+    }
+
 
 }
