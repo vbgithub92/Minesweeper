@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     final static String DIFFICULTY_KEY = "DIFFICULTY_KEY";
     final static String BUNDLE_KEY = "BUNDLE_KEY";
 
-    private Button playButton;
     private String difficulty;
     private RadioButton selectedDifficulty;
 
@@ -30,16 +29,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        playButton = findViewById(R.id.playButton);
-
-
         // For responsiveness
         vibe  = (Vibrator) MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
     }
 
     public void playButtonClicked(View view) {
 
-        vibe.vibrate(80);//
+        vibe.vibrate(80);
 
         RadioButton checkedButton = findViewById(((RadioGroup)findViewById(R.id.difficultyGroup)).getCheckedRadioButtonId());
         difficulty = checkedButton.getText().toString();

@@ -2,11 +2,6 @@ package androiddev.minesweeper.logic;
 
 public class Difficulty {
 
-    enum DifficultyLevel {
-        EASY,
-        NORMAL,
-        HARD
-    }
 
     static final int ROWS_EASY = 6;
     static final int COLS_EASY = 7;
@@ -24,30 +19,27 @@ public class Difficulty {
 
     private String difficultyName;
 
-    public Difficulty(DifficultyLevel difficultyLevel) {
+    public Difficulty(String difficultyLevel) {
         setDifficulty(difficultyLevel);
     }
 
-    public void setDifficulty(DifficultyLevel difficultyLevel) {
+    public void setDifficulty(String difficultyLevel) {
 
         switch(difficultyLevel)
         {
-            case EASY:
-                System.out.println("Easy");
+            case "EASY":
                 setBoardRowsNum(ROWS_EASY);
                 setBoardColsNum(COLS_EASY);
                 setNumberOfMines(MINES_EASY);
                 setDifficultyName("Easy");
                 break;
-            case NORMAL:
-                System.out.println("Normal");
+            case "NORMAL":
                 setBoardRowsNum(ROWS_NORMAL);
                 setBoardColsNum(COLS_NORMAL);
                 setNumberOfMines(MINES_NORMAL);
                 setDifficultyName("Normal");
                 break;
-            case HARD:
-                System.out.println("Hard");
+            case "HARD":
                 setBoardRowsNum(ROWS_HARD);
                 setBoardColsNum(COLS_HARD);
                 setNumberOfMines(MINES_HARD);

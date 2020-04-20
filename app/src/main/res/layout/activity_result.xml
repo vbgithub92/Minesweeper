@@ -18,7 +18,7 @@
         >
 
         <ImageView
-            android:id="@+id/restartIcon"
+            android:id="@+id/resultLogo"
             android:src="@drawable/restart_icon"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -27,10 +27,12 @@
 
 
         <TextView
+            android:id="@+id/resultTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/game_result"
             android:textSize="40dp"
+            android:layout_gravity="center"
             android:textColor="#000000"
             android:textStyle="bold" />
 
@@ -62,7 +64,7 @@
             />
 
         <Space
-            android:layout_width="match_parent"
+            android:layout_width="260dp"
             android:layout_height="40dp">
         </Space>
 
@@ -95,7 +97,7 @@
         <Button
             android:id="@+id/restartButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/restart"
             android:textSize="26sp"
@@ -111,7 +113,7 @@
         <Button
             android:id="@+id/mainMenuButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/main_menu"
             android:textSize="26sp"

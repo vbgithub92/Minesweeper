@@ -9,6 +9,7 @@ public class Game {
     private boolean isFirstMove = true;
     private long gameStrTime = 0;
     private long gameTime = 0;
+
     private Difficulty difficulty;
 
     public Game(Difficulty difficulty) {
@@ -145,4 +146,17 @@ public class Game {
             // loosing logic
         }
     }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public int getBoardSize() {
+        return difficulty.getBoardRowsNum() * difficulty.getBoardColsNum();
+    }
+
+    public Tile getTile(int position) {
+        return tiles[position/tiles.length][position % tiles.length];
+    }
+
 }
