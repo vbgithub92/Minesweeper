@@ -1,5 +1,7 @@
 package androiddev.minesweeper.logic;
 
+import android.util.Log;
+
 import java.util.Random;
 
 public class Game {
@@ -16,6 +18,7 @@ public class Game {
         this.difficulty = difficulty;
         this.numOfMinesLeft = difficulty.getNumberOfMines();
         this.tiles = new Tile[difficulty.getBoardRowsNum()][difficulty.getBoardColsNum()];
+        initializeTiles(tiles);
     }
 
     public long getGameTime() {
@@ -156,7 +159,17 @@ public class Game {
     }
 
     public Tile getTile(int position) {
-        return tiles[position/tiles.length][position % tiles.length];
+        return tiles[position % tiles.length][position/tiles.length];
+    }
+
+    private void initializeTiles(Tile[][] tiles) {
+        for(int i = 0 ; i < difficulty.getBoardRowsNum(); i++)
+            for (int j = 0 ; j < difficulty.getBoardColsNum();j++)
+                tiles[i][j] = new Tile(false,false,false,0);
+    }
+
+    public int getNumOfMinesLeft() {
+        return this.numOfMinesLeft;
     }
 
 }

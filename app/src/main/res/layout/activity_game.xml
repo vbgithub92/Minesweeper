@@ -62,7 +62,7 @@
 
             <!-- Second Row -->
             <TextView
-                android:id="@+id/minesLeft"
+                android:id="@+id/minesLeftTextView"
                 android:layout_column="0"
                 android:layout_row="1"
                 android:text="0"
@@ -75,7 +75,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/timer"
+                android:id="@+id/timerTextView"
                 android:layout_column="2"
                 android:layout_row="1"
                 android:text="00:00"
@@ -89,48 +89,48 @@
 
         </GridLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="GameGridHere">
-        </TextView>
-
-
         <GridView
             android:id="@+id/gridView"
+            android:background="@color/colorAccent"
             android:numColumns="3"
-            android:verticalSpacing="10dp"
-            android:horizontalSpacing="10dp"
-            android:background="@color/colorGridBackground"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
             />
 
-
-        <Button
-            android:id="@+id/devWin"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dev - Win"
-            android:onClick="devWinButtonPressed">
+            android:orientation="horizontal">
 
-        </Button>
+            <Button
+                android:id="@+id/devWin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dev - Win"
+                android:onClick="devWinButtonPressed">
 
-        <Button
-            android:id="@+id/devGameLoss"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dev - Loss"
-            android:onClick="devLoseButtonPressed">
+            </Button>
 
-        </Button>
+            <Button
+                android:id="@+id/devGameLoss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dev - Loss"
+                android:onClick="devLoseButtonPressed">
 
+            </Button>
 
+            <TextView
+                android:id="@+id/devResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="@string/game_result">
 
+            </TextView>
+        </LinearLayout>
 
     </LinearLayout>
-
-
 
 </RelativeLayout>

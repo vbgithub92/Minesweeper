@@ -1,6 +1,7 @@
 package androiddev.minesweeper;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -48,7 +49,18 @@ public class TileAdapter extends BaseAdapter {
         }
 
         Tile tile = game.getTile(position);
-        tileView.setText(tile.toString());
+
+        String debugString;
+
+        if(tile.isMine()){
+            tileView.setText("M");
+            //tileView.setBackgroundDrawable(R.drawable.flag);
+        }
+        else
+        {
+            tileView.setText(String.valueOf(tile.getAdjacentMinesNum()));
+        }
+
         return tileView;
     }
 }
