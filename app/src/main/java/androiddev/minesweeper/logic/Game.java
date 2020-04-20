@@ -30,28 +30,37 @@ public class Game {
         return gameTime;
     }
 
-    public void flagTile(Tile tile) {
-        tile.flagTile();
-        if (tile.isFlagged()) {
-            flaggedTilesCounter++;
-            if (tile.isMine())
-                numOfMinesLeft--;
-        }
-        else {
-            flaggedTilesCounter--;
-            if (tile.isMine())
-                numOfMinesLeft++;
-        }
-        if ((flaggedTilesCounter - numOfMinesLeft) == difficulty.getNumberOfMines())
-            endGame(true);
+    public int getFlaggedTilesCounter() {
+        return flaggedTilesCounter;
+    }
 
-        if ((tappedTilesCounter + flaggedTilesCounter) == (difficulty.getBoardColsNum() * difficulty.getBoardRowsNum() - numOfMinesLeft)) {
-            endGame(true);
+    public boolean isFirstMove() {
+        return isFirstMove;
+    }
+
+    public void flagTile(Tile tile) {
+        if (!tile.isTapped()) {
+            tile.flagTile();
+            if (tile.isFlagged()) {
+                flaggedTilesCounter++;
+                if (tile.isMine())
+                    numOfMinesLeft--;
+            } else {
+                flaggedTilesCounter--;
+                if (tile.isMine())
+                    numOfMinesLeft++;
+            }
+            if ((flaggedTilesCounter - numOfMinesLeft) == difficulty.getNumberOfMines())
+                endGame(true);
+
+            if ((tappedTilesCounter + flaggedTilesCounter) == (difficulty.getBoardColsNum() * difficulty.getBoardRowsNum() - numOfMinesLeft)) {
+                endGame(true);
+            }
         }
     }
 
     public void tapTile(Tile tile) {
-        if (!tile.isTapped()) {
+        if (!tile.isTapped() && !tile.isFlagged()) {
             tappedTilesCounter++;
             if (isFirstMove) {
                 isFirstMove = false;
