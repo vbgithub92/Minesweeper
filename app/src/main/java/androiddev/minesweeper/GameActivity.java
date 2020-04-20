@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -27,14 +28,18 @@ public class GameActivity extends AppCompatActivity {
     final static String RESULT_KEY = "RESULT_KEY";
     final static String MINES_LEFT_KEY = "MINES_LEFT_KEY";
     final static String FINISHED_IN_KEY = "FINISHED_IN_KEY";
+    final static String DIFFICULTY_KEY = "DIFFICULTY_KEY";
 
     private Game theGame;
+    private Difficulty difficulty;
     private GridView gridView;
     private TileAdapter tileAdapter;
 
 
+
     private TextView minesLeftTextView;
     private TextView gameTimeTextView;
+    private ImageView restartIconImageView;
 
 
     // For responsiveness
@@ -50,13 +55,15 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle b = ((Intent) intent).getBundleExtra(MainActivity.BUNDLE_KEY);
 
-        Difficulty difficulty = new Difficulty(b.getString(MainActivity.DIFFICULTY_KEY));
+        difficulty = new Difficulty(b.getString(MainActivity.DIFFICULTY_KEY));
         theGame = new Game(difficulty);
 
         minesLeftTextView = findViewById(R.id.minesLeftTextView);
         minesLeftTextView.setText(String.valueOf(theGame.getNumOfMinesLeft()));
 
         gameTimeTextView = findViewById(R.id.timerTextView);
+
+        restartIconImageView = findViewById(R.id.restartIcon);
 
         gridView = (GridView)findViewById(R.id.gridView);
         gridView.setNumColumns(theGame.getDifficulty().getBoardColsNum());
@@ -91,6 +98,30 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
+        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                vibe.vibrate(80);
+                Log.d("FlAG","Flagged tile at pos " + position);
+
+                Tile FlaggedTile = (Tile)gridView.getAdapter().getItem(position);
+                theGame.flagTile(FlaggedTile);
+
+
+                // Check game end
+                if(theGame.isGameOver()) {
+                    if(theGame.isGameWon())
+                        finishGame(true);
+                    else
+                        finishGame(false);
+                }
+
+                tileAdapter.notifyDataSetChanged();
+                return true;
+            }
+        });
+
     }
 
 
@@ -103,6 +134,7 @@ public class GameActivity extends AppCompatActivity {
         b.putString(RESULT_KEY, "Win");
         b.putString(MINES_LEFT_KEY, "0");
         b.putString(FINISHED_IN_KEY, "00:45");
+        b.putString(DIFFICULTY_KEY, difficulty.getDifficultyName());
         intent.putExtra(BUNDLE_KEY, b);
 
         startActivity(intent);
@@ -119,6 +151,7 @@ public class GameActivity extends AppCompatActivity {
         b.putString(RESULT_KEY, "Loss");
         b.putString(MINES_LEFT_KEY, "6");
         b.putString(FINISHED_IN_KEY, "02:35");
+        b.putString(DIFFICULTY_KEY, difficulty.getDifficultyName());
         intent.putExtra(BUNDLE_KEY, b);
 
         startActivity(intent);
@@ -128,20 +161,14 @@ public class GameActivity extends AppCompatActivity {
 
     public void restartIconClicked(View view) {
 
-        // TODO
-        // restart with same difficulty
-
-        /*
-
         Intent intent = new Intent(this, GameActivity.class);
-
         Bundle b = new Bundle();
+        b.putString(DIFFICULTY_KEY, difficulty.getDifficultyName());
 
-        //intent.putExtra(BUNDLE_KEY, b);
+        intent.putExtra(BUNDLE_KEY, b);
 
         startActivity(intent);
 
-        */
     }
 
     public void finishGame(boolean wonGame) {
@@ -160,6 +187,7 @@ public class GameActivity extends AppCompatActivity {
         b.putString(RESULT_KEY, resultString);
         b.putString(MINES_LEFT_KEY, String.valueOf(theGame.getNumOfMinesLeft()));
         b.putString(FINISHED_IN_KEY, formatGameTime(theGame.getGameTime()));
+        b.putString(DIFFICULTY_KEY , theGame.getDifficulty().getDifficultyName());
         intent.putExtra(BUNDLE_KEY, b);
 
         startActivity(intent);

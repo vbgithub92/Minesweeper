@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         vibe.vibrate(80);
 
-        RadioButton checkedButton = findViewById(((RadioGroup)findViewById(R.id.difficultyGroup)).getCheckedRadioButtonId());
-        difficulty = checkedButton.getText().toString();
+        selectedDifficulty = findViewById(((RadioGroup)findViewById(R.id.difficultyGroup)).getCheckedRadioButtonId());
+        difficulty = selectedDifficulty.getText().toString();
 
         Intent intent = new Intent(this, GameActivity.class);
 

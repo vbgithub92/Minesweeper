@@ -3,14 +3,14 @@ package androiddev.minesweeper.logic;
 public class Difficulty {
 
 
-    static final int ROWS_EASY = 6;
-    static final int COLS_EASY = 7;
+    static final int ROWS_EASY = 7;
+    static final int COLS_EASY = 6;
     static final int MINES_EASY = 6;
-    static final int ROWS_NORMAL = 9;
-    static final int COLS_NORMAL = 11;
+    static final int ROWS_NORMAL = 11;
+    static final int COLS_NORMAL = 9;
     static final int MINES_NORMAL = 16;
-    static final int ROWS_HARD = 12;
-    static final int COLS_HARD = 14;
+    static final int ROWS_HARD = 14;
+    static final int COLS_HARD = 12;
     static final int MINES_HARD = 28;
 
     private int boardRowsNum;

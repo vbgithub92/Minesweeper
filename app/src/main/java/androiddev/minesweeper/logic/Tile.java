@@ -17,7 +17,8 @@ public class Tile {
     }
 
     public void flagTile() {
-        this.setFlagged(!this.isFlagged());
+        if (!this.isTapped())
+            this.setFlagged(!this.isFlagged());
     }
 
     public boolean tapTile() {
