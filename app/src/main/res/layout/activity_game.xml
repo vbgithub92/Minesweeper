@@ -95,12 +95,34 @@
             android:text="GameGridHere">
         </TextView>
 
+
+        <GridView
+            android:id="@+id/gridView"
+            android:numColumns="3"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="10dp"
+            android:background="@color/colorGridBackground"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            />
+
+
         <Button
-            android:id="@+id/devGameResultButton"
+            android:id="@+id/devWin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dev - Next Activity"
-            android:onClick="devGameResultButtonPressed">
+            android:text="Dev - Win"
+            android:onClick="devWinButtonPressed">
+
+        </Button>
+
+        <Button
+            android:id="@+id/devGameLoss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dev - Loss"
+            android:onClick="devLoseButtonPressed">
 
         </Button>
 
