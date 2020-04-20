@@ -27,19 +27,19 @@ public class Difficulty {
 
         switch(difficultyLevel)
         {
-            case "EASY":
+            case "Easy":
                 setBoardRowsNum(ROWS_EASY);
                 setBoardColsNum(COLS_EASY);
                 setNumberOfMines(MINES_EASY);
                 setDifficultyName("Easy");
                 break;
-            case "NORMAL":
+            case "Normal":
                 setBoardRowsNum(ROWS_NORMAL);
                 setBoardColsNum(COLS_NORMAL);
                 setNumberOfMines(MINES_NORMAL);
                 setDifficultyName("Normal");
                 break;
-            case "HARD":
+            case "Hard":
                 setBoardRowsNum(ROWS_HARD);
                 setBoardColsNum(COLS_HARD);
                 setNumberOfMines(MINES_HARD);

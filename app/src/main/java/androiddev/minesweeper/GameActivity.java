@@ -6,10 +6,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import androiddev.minesweeper.logic.Difficulty;
 import androiddev.minesweeper.logic.Game;
@@ -27,6 +32,10 @@ public class GameActivity extends AppCompatActivity {
     private GridView gridView;
     private TileAdapter tileAdapter;
 
+    private TextView result;
+    private TextView minesLeftTextView;
+    private TextView gameTimeTextView;
+
 
     // For responsiveness
     private Vibrator vibe;
@@ -36,35 +45,46 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        // For responsiveness
         vibe  = (Vibrator) GameActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
+
+
+        result = findViewById(R.id.devResult);
 
         Intent intent = getIntent();
         Bundle b = ((Intent) intent).getBundleExtra(MainActivity.BUNDLE_KEY);
-        Difficulty difficulty = new Difficulty(b.getString(MainActivity.DIFFICULTY_KEY));
 
+        Difficulty difficulty = new Difficulty(b.getString(MainActivity.DIFFICULTY_KEY));
         theGame = new Game(difficulty);
+
+        minesLeftTextView = findViewById(R.id.minesLeftTextView);
+        minesLeftTextView.setText(String.valueOf(theGame.getNumOfMinesLeft()));
+
+        gameTimeTextView = findViewById(R.id.timerTextView);
 
         gridView = (GridView)findViewById(R.id.gridView);
         gridView.setNumColumns(theGame.getDifficulty().getBoardColsNum());
-        gridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
+        gridView.setVerticalSpacing(2);
+        gridView.setHorizontalSpacing(2);
 
-        tileAdapter = new TileAdapter(this, theGame);
+        tileAdapter = new TileAdapter(getApplicationContext(), theGame);
         gridView.setAdapter(tileAdapter);
-
 
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 vibe.vibrate(80);
-                //theGame.tapTile((Tile)gridView.getAdapter().getItem(position));
+                Log.d("TAP","Tapped tile at pos " + position);
+
+                Tile tappedTile = (Tile)gridView.getAdapter().getItem(position);
+                theGame.tapTile(tappedTile);
+                //theGame.
+
+                tileAdapter.notifyDataSetChanged();
 
             }
         });
-
-
-
 
     }
 
@@ -117,7 +137,6 @@ public class GameActivity extends AppCompatActivity {
         startActivity(intent);
 
         */
-
-
     }
+
 }
