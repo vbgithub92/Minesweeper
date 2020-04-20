@@ -32,7 +32,7 @@ public class GameActivity extends AppCompatActivity {
     private GridView gridView;
     private TileAdapter tileAdapter;
 
-    private TextView result;
+
     private TextView minesLeftTextView;
     private TextView gameTimeTextView;
 
@@ -46,9 +46,6 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         vibe  = (Vibrator) GameActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
-
-
-        result = findViewById(R.id.devResult);
 
         Intent intent = getIntent();
         Bundle b = ((Intent) intent).getBundleExtra(MainActivity.BUNDLE_KEY);
@@ -79,7 +76,15 @@ public class GameActivity extends AppCompatActivity {
 
                 Tile tappedTile = (Tile)gridView.getAdapter().getItem(position);
                 theGame.tapTile(tappedTile);
-                //theGame.
+
+
+                // Check game end
+                if(theGame.isGameOver()) {
+                    if(theGame.isGameWon())
+                        finishGame(true);
+                    else
+                        finishGame(false);
+                }
 
                 tileAdapter.notifyDataSetChanged();
 
@@ -137,6 +142,36 @@ public class GameActivity extends AppCompatActivity {
         startActivity(intent);
 
         */
+    }
+
+    public void finishGame(boolean wonGame) {
+
+        Intent intent = new Intent(this, ResultActivity.class);
+
+        // For testing
+        Bundle b = new Bundle();
+
+        String resultString;
+        if(wonGame)
+            resultString = "Win";
+        else
+            resultString = "Loss";
+
+        b.putString(RESULT_KEY, resultString);
+        b.putString(MINES_LEFT_KEY, String.valueOf(theGame.getNumOfMinesLeft()));
+        b.putString(FINISHED_IN_KEY, formatGameTime(theGame.getGameTime()));
+        intent.putExtra(BUNDLE_KEY, b);
+
+        startActivity(intent);
+
+    }
+
+    public String formatGameTime(long gameTime){
+
+        int gameMinutes = (int)(gameTime / 1000)/60;
+        int gameSeconds = (int)(gameTime / 1000)%60;
+        String formattedString = String.format("%02d:%02d", gameMinutes, gameSeconds);
+        return formattedString;
     }
 
 }
