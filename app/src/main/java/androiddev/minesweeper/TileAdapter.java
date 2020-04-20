@@ -2,6 +2,7 @@ package androiddev.minesweeper;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,14 +55,12 @@ public class TileAdapter extends BaseAdapter {
         tileView.setText("");
 
         if (tile.isFlagged()) {
-            tileView.setText("FG");
-            //tileView.setBackgroundDrawable();
+            tileView.setText(R.string.flag);
         }
 
         if (tile.isTapped()) {
             if (tile.isMine()) {
-                tileView.setText("M");
-                //tileView.setBackgroundDrawable(R.drawable.flag);
+                tileView.setText(R.string.mine);
             } else {
 
                 tileView.setBackgroundColor(Color.LTGRAY);

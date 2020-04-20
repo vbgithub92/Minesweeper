@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
@@ -35,12 +36,8 @@ public class GameActivity extends AppCompatActivity {
     private GridView gridView;
     private TileAdapter tileAdapter;
 
-
-
     private TextView minesLeftTextView;
     private TextView gameTimeTextView;
-    private ImageView restartIconImageView;
-
 
     // For responsiveness
     private Vibrator vibe;
@@ -63,12 +60,10 @@ public class GameActivity extends AppCompatActivity {
 
         gameTimeTextView = findViewById(R.id.timerTextView);
 
-        restartIconImageView = findViewById(R.id.restartIcon);
-
         gridView = (GridView)findViewById(R.id.gridView);
         gridView.setNumColumns(theGame.getDifficulty().getBoardColsNum());
-        gridView.setVerticalSpacing(2);
-        gridView.setHorizontalSpacing(2);
+        gridView.setVerticalSpacing(4);
+        gridView.setHorizontalSpacing(4);
 
         tileAdapter = new TileAdapter(getApplicationContext(), theGame);
         gridView.setAdapter(tileAdapter);
@@ -78,12 +73,11 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                vibe.vibrate(80);
-                Log.d("TAP","Tapped tile at pos " + position);
+                if(!theGame.getTile(position).isTapped())
+                    vibe.vibrate(80);
 
                 Tile tappedTile = (Tile)gridView.getAdapter().getItem(position);
                 theGame.tapTile(tappedTile);
-
 
                 // Check game end
                 if(theGame.isGameOver()) {
@@ -102,8 +96,8 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-                vibe.vibrate(80);
-                Log.d("FlAG", "Flagged tile at pos " + position);
+                if(!theGame.getTile(position).isTapped())
+                    vibe.vibrate(80);
 
                 Tile FlaggedTile = (Tile) gridView.getAdapter().getItem(position);
                 theGame.flagTile(FlaggedTile);
@@ -122,9 +116,82 @@ public class GameActivity extends AppCompatActivity {
         });
 
 
+        updateDisplay();
+
+
+    }
+
+    public void restartIconClicked(View view) {
+
+        Intent intent = new Intent(this, GameActivity.class);
+        Bundle b = new Bundle();
+        b.putString(DIFFICULTY_KEY, difficulty.getDifficultyName());
+
+        intent.putExtra(BUNDLE_KEY, b);
+
+        startActivity(intent);
+
+    }
+
+    public void finishGame(boolean wonGame) {
+
+        Intent intent = new Intent(this, ResultActivity.class);
+
+        // For testing
+        Bundle b = new Bundle();
+
+        String resultString;
+        if(wonGame) {
+            resultString = "Win";
+            theGame.flagAllMines();
+            tileAdapter.notifyDataSetChanged();
+        }
+        else {
+            resultString = "Loss";
+            theGame.showAllMines();
+            tileAdapter.notifyDataSetChanged();
+        }
+
+        b.putString(RESULT_KEY, resultString);
+        b.putString(MINES_LEFT_KEY, String.valueOf(theGame.getNumOfMinesLeft()));
+        b.putString(FINISHED_IN_KEY, formatGameTime(theGame.getGameTime()));
+        b.putString(DIFFICULTY_KEY , theGame.getDifficulty().getDifficultyName());
+        intent.putExtra(BUNDLE_KEY, b);
+
+        startActivity(intent);
+
+
+    }
+
+    public String formatGameTime(long gameTime){
+
+        int gameMinutes = (int)(gameTime / 1000)/60;
+        int gameSeconds = (int)(gameTime / 1000)%60;
+        String formattedString = String.format("%02d:%02d", gameMinutes, gameSeconds);
+        return formattedString;
+    }
+
+    private void updateDisplay() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                if (!(theGame.getGameStrTime() == 0)) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            gameTimeTextView.setText(formatGameTime(System.currentTimeMillis() - theGame.getGameStrTime()));
+                        }
+                    });
+                }
+            }
+        },0,1000);//Update text every second
     }
 
 
+    // ------------------- DEV ---------------------
+    /*
     public void devWinButtonPressed(View view) {
 
         Intent intent = new Intent(this, ResultActivity.class);
@@ -157,49 +224,5 @@ public class GameActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-
-    public void restartIconClicked(View view) {
-
-        Intent intent = new Intent(this, GameActivity.class);
-        Bundle b = new Bundle();
-        b.putString(DIFFICULTY_KEY, difficulty.getDifficultyName());
-
-        intent.putExtra(BUNDLE_KEY, b);
-
-        startActivity(intent);
-
-    }
-
-    public void finishGame(boolean wonGame) {
-
-        Intent intent = new Intent(this, ResultActivity.class);
-
-        // For testing
-        Bundle b = new Bundle();
-
-        String resultString;
-        if(wonGame)
-            resultString = "Win";
-        else
-            resultString = "Loss";
-
-        b.putString(RESULT_KEY, resultString);
-        b.putString(MINES_LEFT_KEY, String.valueOf(theGame.getNumOfMinesLeft()));
-        b.putString(FINISHED_IN_KEY, formatGameTime(theGame.getGameTime()));
-        b.putString(DIFFICULTY_KEY , theGame.getDifficulty().getDifficultyName());
-        intent.putExtra(BUNDLE_KEY, b);
-
-        startActivity(intent);
-
-    }
-
-    public String formatGameTime(long gameTime){
-
-        int gameMinutes = (int)(gameTime / 1000)/60;
-        int gameSeconds = (int)(gameTime / 1000)%60;
-        String formattedString = String.format("%02d:%02d", gameMinutes, gameSeconds);
-        return formattedString;
-    }
-
+*/
 }

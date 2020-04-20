@@ -50,11 +50,14 @@ public class Game {
                 if (tile.isMine())
                     numOfMinesLeft++;
             }
-            if ((flaggedTilesCounter - numOfMinesLeft) == difficulty.getNumberOfMines())
+
+            if (flaggedTilesCounter  == difficulty.getNumberOfMines() && numOfMinesLeft == 0)
                 endGame(true);
 
-            if ((tappedTilesCounter + flaggedTilesCounter) == (difficulty.getBoardColsNum() * difficulty.getBoardRowsNum() - numOfMinesLeft)) {
-                endGame(true);
+            if (flaggedTilesCounter < difficulty.getNumberOfMines()) {
+                if ((tappedTilesCounter + flaggedTilesCounter) == (difficulty.getBoardColsNum() * difficulty.getBoardRowsNum() - numOfMinesLeft)) {
+                    endGame(true);
+                }
             }
         }
     }
@@ -101,8 +104,11 @@ public class Game {
                 }
             }
         }
-        if ((tappedTilesCounter + flaggedTilesCounter) == (difficulty.getBoardColsNum() * difficulty.getBoardRowsNum() - numOfMinesLeft)) {
-            endGame(true);
+
+        if (flaggedTilesCounter < difficulty.getNumberOfMines()) {
+            if ((tappedTilesCounter + flaggedTilesCounter) == (difficulty.getBoardColsNum() * difficulty.getBoardRowsNum() - numOfMinesLeft)) {
+                endGame(true);
+            }
         }
     }
 
@@ -215,6 +221,26 @@ public class Game {
 
     public boolean isGameWon() {
         return gameWon;
+    }
+
+    public void flagAllMines() {
+        for (int i = 0; i < difficulty.getBoardRowsNum(); i++)
+            for (int j = 0; j < difficulty.getBoardColsNum(); j++) {
+                if (tiles[i][j].isMine() && !tiles[i][j].isFlagged())
+                    flagTile(tiles[i][j]);
+            }
+    }
+
+    public void showAllMines() {
+        for (int i = 0; i < difficulty.getBoardRowsNum(); i++)
+            for (int j = 0; j < difficulty.getBoardColsNum(); j++) {
+                if (tiles[i][j].isMine() && !tiles[i][j].isFlagged())
+                    tiles[i][j].tapTile();
+            }
+    }
+
+    public long getGameStrTime() {
+        return gameStrTime;
     }
 
 
