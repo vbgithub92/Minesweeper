@@ -81,6 +81,7 @@ public class GameActivity extends AppCompatActivity {
 
                 // Check game end
                 if(theGame.isGameOver()) {
+                    vibe.vibrate(500);
                     if(theGame.isGameWon())
                         finishGame(true);
                     else
@@ -191,12 +192,11 @@ public class GameActivity extends AppCompatActivity {
 
 
     // ------------------- DEV ---------------------
-    /*
+
     public void devWinButtonPressed(View view) {
 
         Intent intent = new Intent(this, ResultActivity.class);
 
-        // For testing
         Bundle b = new Bundle();
         b.putString(RESULT_KEY, "Win");
         b.putString(MINES_LEFT_KEY, "0");
@@ -213,7 +213,6 @@ public class GameActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, ResultActivity.class);
 
-        // For testing
         Bundle b = new Bundle();
         b.putString(RESULT_KEY, "Loss");
         b.putString(MINES_LEFT_KEY, "6");
@@ -224,5 +223,5 @@ public class GameActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-*/
+
 }

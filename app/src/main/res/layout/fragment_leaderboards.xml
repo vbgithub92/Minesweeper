@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.LeaderboardsFragment"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:text="@string/topScores"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-black"
+            android:textColor="#000000"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+        />
+        <TextView
+            android:id="@+id/leaderboardsDifficulty"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:text="@string/difficulty"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-black"
+            android:textColor="#000000"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <!-- Grid here -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+            <!-- Headers -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:text="@string/name"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:textStyle="bold"/>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                     />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:text="@string/score"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/firstPlaceName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/name"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:src="@drawable/first_place" />
+
+                <TextView
+                    android:id="@+id/firstPlaceScore"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/score"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/secondPlaceName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/name"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:src="@drawable/second_place" />
+
+                <TextView
+                    android:id="@+id/secondPlaceScore"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/score"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/thirdPlaceName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/name"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:src="@drawable/third_place" />
+
+                <TextView
+                    android:id="@+id/thirdPlaceScore"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/score"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
+
+<!-- DEV -->
+
+<!--
+<GridLayout
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="3"
+android:columnCount="3"
+android:paddingHorizontal="40dp"
+
+    >
+
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_columnWeight="1"
+    android:fontFamily="sans-serif-black"
+    android:gravity="center"
+    android:text="@string/name"
+    android:textAlignment="center"
+    android:textColor="#000000"
+    android:textSize="20sp"
+    android:textStyle="bold"></TextView>
+
+<Space
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_rowWeight="1"
+    android:layout_columnWeight="1" />
+
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_columnWeight="1"
+    android:fontFamily="sans-serif-black"
+    android:gravity="center"
+    android:text="@string/score"
+    android:textAlignment="center"
+    android:textColor="#000000"
+    android:textSize="20sp"
+    android:textStyle="bold"></TextView>
+
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_columnWeight="1"
+    android:fontFamily="sans-serif-black"
+    android:gravity="center"
+    android:text="@string/name"
+    android:textAlignment="center"
+    android:textColor="#000000"
+    android:textSize="20sp"
+    android:textStyle="bold"></TextView>
+
+<ImageView
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_rowWeight="0.5"
+    android:layout_columnWeight="1"
+
+    android:src="@drawable/first_place" />
+
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_columnWeight="1"
+    android:fontFamily="sans-serif-black"
+    android:gravity="center"
+    android:text="@string/score"
+    android:textAlignment="center"
+    android:textColor="#000000"
+    android:textSize="20sp"
+    android:textStyle="bold"></TextView>
+
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_columnWeight="1"
+    android:fontFamily="sans-serif-black"
+    android:gravity="center"
+    android:text="@string/name"
+    android:textAlignment="center"
+    android:textColor="#000000"
+    android:textSize="20sp"
+    android:textStyle="bold"></TextView>
+
+<ImageView
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_rowWeight="0.5"
+    android:layout_columnWeight="1"
+
+    android:src="@drawable/second_place" />
+
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_columnWeight="1"
+    android:fontFamily="sans-serif-black"
+    android:gravity="center"
+    android:text="@string/score"
+    android:textAlignment="center"
+    android:textColor="#000000"
+    android:textSize="20sp"
+    android:textStyle="bold"></TextView>
+
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_columnWeight="1"
+    android:fontFamily="sans-serif-black"
+    android:gravity="center"
+    android:text="@string/name"
+    android:textAlignment="center"
+    android:textColor="#000000"
+    android:textSize="20sp"
+    android:textStyle="bold"></TextView>
+
+<ImageView
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_rowWeight="0.5"
+    android:layout_columnWeight="1"
+
+    android:src="@drawable/third_place" />
+
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_columnWeight="1"
+    android:fontFamily="sans-serif-black"
+    android:gravity="center"
+    android:text="@string/score"
+    android:textAlignment="center"
+    android:textColor="#000000"
+    android:textSize="20sp"
+    android:textStyle="bold"></TextView>
+
+
+</GridLayout>
+
+-->

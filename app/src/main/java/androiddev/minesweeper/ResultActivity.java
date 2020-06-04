@@ -57,10 +57,10 @@ public class ResultActivity extends AppCompatActivity {
         restart();
     }
 
-    public void mainMenuButtonClicked(View view) {
+    public void exitButtonClicked(View view) {
 
         vibe.vibrate(80);
-        mainMenu();
+        exit();
     }
 
     private void initializeViews(){
@@ -94,8 +94,7 @@ public class ResultActivity extends AppCompatActivity {
 
     }
 
-    public void mainMenu(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+    public void exit(){
+        finishAffinity();
     }
 }

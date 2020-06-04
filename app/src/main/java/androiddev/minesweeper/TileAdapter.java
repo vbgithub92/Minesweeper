@@ -66,34 +66,19 @@ public class TileAdapter extends BaseAdapter {
                 tileView.setBackgroundColor(Color.LTGRAY);
                 int adjMines = tile.getAdjacentMinesNum();
 
-                int textColor = Color.parseColor("#FFFFFF");
+                int[] colors = {
+                        Color.parseColor("#FFFFFF"),
+                        Color.BLUE,
+                        Color.parseColor("#009933"), // Dark Green
+                        Color.RED,
+                        Color.parseColor("#6600cc"), // Purple
+                        Color.MAGENTA,
+                        Color.CYAN,
+                        Color.BLACK,
+                        Color.LTGRAY
+                };
 
-                switch(adjMines) {
-                    case 0 :
-                        break;
-                    case 1:
-                        textColor = Color.BLUE;
-                        break;
-                    case 2:
-                        textColor = Color.parseColor("#009933"); // Dark Green
-                        break;
-                    case 3:
-                        textColor = Color.RED;
-                        break;
-                    case 4:
-                        textColor = Color.parseColor("#6600cc"); // Purple
-                        break;
-                    case 5:
-                        textColor = Color.MAGENTA;
-                    case 6:
-                        textColor = Color.CYAN;
-                    case 7:
-                        textColor = Color.BLACK;
-                    case 8:
-                        textColor = Color.LTGRAY;
-                    default:
-                        break;
-                }
+                int textColor = colors[adjMines];
 
                 if(adjMines != 0) {
                     // change color

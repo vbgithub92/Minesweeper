@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mine Sweeper</string>
+    <string name="app_name">MineSweeper</string>
     <string name="play_button">Play</string>
     <string name="easy">Easy</string>
     <string name="normal">Normal</string>
@@ -11,8 +11,20 @@
     <string name="finished_in">Finished In</string>
     <string name="game_result">Game Result</string>
     <string name="restart">Restart</string>
-    <string name="main_menu">Main Menu</string>
+    <string name="exit">Exit</string>
     <string name="flag">F</string>
     <string name="mine">*</string>
     <string name="controlsPrompt">Long press a tile to flag/unflag it</string>
+
+    <!--
+    Version 2
+    -->
+
+    <string name="topScores">Top Scores</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="name">Name</string>
+    <string name="score">Score</string>
+    <string name="leaderboards">Leaderboards</string>
+
+
 </resources>
