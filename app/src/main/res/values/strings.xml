@@ -14,17 +14,32 @@
     <string name="exit">Exit</string>
     <string name="flag">F</string>
     <string name="mine">*</string>
-    <string name="controlsPrompt">Long press a tile to flag/unflag it</string>
+    <string name="controls_prompt">Long press a tile to flag/unflag it</string>
+    <string name="restart_prompt">Tap the mine icon for a quick restart</string>
 
     <!--
     Version 2
     -->
 
-    <string name="topScores">Top Scores</string>
+    <!-- Shared Pref -->
+    <string name="preference_file_key">Minesweeper</string>
+    <string name="default_difficulty_key">Default Difficulty</string>
+    <string name="scoreboard_key">Scoreboard Key</string>
+
+    <!-- Fragments -->
+    <string name="top_scores">Top Scores</string>
     <string name="difficulty">Difficulty</string>
     <string name="name">Name</string>
     <string name="score">Score</string>
     <string name="leaderboards">Leaderboards</string>
+
+
+    <!-- Dialog -->
+    <string name="congratulations">Congratulations!</string>
+    <string name="new_highScore">New High Score</string>
+    <string name="enter_name_prompt">What\'s your name?</string>
+    <string name="submit">Submit</string>
+    <string name="missing_player_name_prompt">Player name is missing :(</string>
 
 
 </resources>

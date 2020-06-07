@@ -6,13 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -20,6 +16,7 @@ import java.util.TimerTask;
 
 import androiddev.minesweeper.logic.Difficulty;
 import androiddev.minesweeper.logic.Game;
+import androiddev.minesweeper.logic.Score;
 import androiddev.minesweeper.logic.Tile;
 
 public class GameActivity extends AppCompatActivity {
@@ -30,6 +27,7 @@ public class GameActivity extends AppCompatActivity {
     final static String MINES_LEFT_KEY = "MINES_LEFT_KEY";
     final static String FINISHED_IN_KEY = "FINISHED_IN_KEY";
     final static String DIFFICULTY_KEY = "DIFFICULTY_KEY";
+    final static String SCORE_KEY = "SCORE_KEY";
 
     private Game theGame;
     private Difficulty difficulty;
@@ -119,10 +117,13 @@ public class GameActivity extends AppCompatActivity {
 
         updateDisplay();
 
+        /* Dev */
 
     }
 
     public void restartIconClicked(View view) {
+
+        vibe.vibrate(500);
 
         Intent intent = new Intent(this, GameActivity.class);
         Bundle b = new Bundle();
@@ -143,15 +144,16 @@ public class GameActivity extends AppCompatActivity {
 
         String resultString;
         if(wonGame) {
+            int score = calcScore();
+            b.putInt(SCORE_KEY, score);
             resultString = "Win";
             theGame.flagAllMines();
-            tileAdapter.notifyDataSetChanged();
         }
         else {
             resultString = "Loss";
             theGame.showAllMines();
-            tileAdapter.notifyDataSetChanged();
         }
+        tileAdapter.notifyDataSetChanged();
 
         b.putString(RESULT_KEY, resultString);
         b.putString(MINES_LEFT_KEY, String.valueOf(theGame.getNumOfMinesLeft()));
@@ -161,6 +163,15 @@ public class GameActivity extends AppCompatActivity {
 
         startActivity(intent);
 
+    }
+
+    public int calcScore() {
+        // TODO Maybe change?
+        if(theGame.getGameTime() != 0) {
+            return (int)(99999999 / theGame.getGameTime());
+        }
+        else
+            return 0;
 
     }
 
@@ -200,7 +211,8 @@ public class GameActivity extends AppCompatActivity {
         Bundle b = new Bundle();
         b.putString(RESULT_KEY, "Win");
         b.putString(MINES_LEFT_KEY, "0");
-        b.putString(FINISHED_IN_KEY, "00:45");
+        b.putInt(SCORE_KEY,calcScore());
+        b.putString(FINISHED_IN_KEY, formatGameTime(theGame.getGameTime()));
         b.putString(DIFFICULTY_KEY, difficulty.getDifficultyName());
         intent.putExtra(BUNDLE_KEY, b);
 

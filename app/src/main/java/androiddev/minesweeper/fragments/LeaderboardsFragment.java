@@ -15,7 +15,10 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import androiddev.minesweeper.MainActivity;
 import androiddev.minesweeper.R;
+import androiddev.minesweeper.logic.Score;
+import androiddev.minesweeper.logic.Scoreboard;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,42 +41,45 @@ public class LeaderboardsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        updateFragment(difficulty);
+        updateFragment(difficulty, ((MainActivity)getActivity()).getScoreboard());
     }
 
     public void setDifficulty(String difficulty){
         this.difficulty = difficulty;
     }
 
-    public void updateFragment(String difficulty) {
-
-        int i;
+    public void updateFragment(String difficulty, Scoreboard scoreboard) {
 
         TextView leaderBoardsDifficulty = getView().findViewById(R.id.leaderboardsDifficulty);
         leaderBoardsDifficulty.setText(difficulty);
-
-        // TODO update the fragment according to the shared preferences high scores
 
         List<TextView> playerNamesTextViews = new ArrayList<TextView>();
         playerNamesTextViews.add((TextView)getView().findViewById(R.id.firstPlaceName));
         playerNamesTextViews.add((TextView)getView().findViewById(R.id.secondPlaceName));
         playerNamesTextViews.add((TextView)getView().findViewById(R.id.thirdPlaceName));
 
-        String[] names = {"Saggi","Vlad","Shmulik"};
-
-        for(i = 0 ; i < playerNamesTextViews.size() ; i++){
-            playerNamesTextViews.get(i).setText(names[i]);
-        }
-
         List<TextView> playerScoresTextViews = new ArrayList<TextView>();
         playerScoresTextViews.add((TextView)getView().findViewById(R.id.firstPlaceScore));
         playerScoresTextViews.add((TextView)getView().findViewById(R.id.secondPlaceScore));
         playerScoresTextViews.add((TextView)getView().findViewById(R.id.thirdPlaceScore));
 
-        int[] scores = {999,666,42};
+        Score[] scoresToShow = scoreboard.getTop3HighScores(difficulty);
 
-        for(i = 0 ; i < playerScoresTextViews.size() ; i++){
-            playerScoresTextViews.get(i).setText(String.valueOf(scores[i]));
+        for(int i = 0 ; i < playerNamesTextViews.size() ; i++){
+            if(scoresToShow[i] != null) {
+                playerNamesTextViews.get(i).setText(scoresToShow[i].getPlayersName());
+            }
+            else {
+                playerNamesTextViews.get(i).setText("");
+            }
+
+        }
+        for(int i = 0 ; i < playerScoresTextViews.size() ; i++){
+            if (scoresToShow[i] != null) {
+                playerScoresTextViews.get(i).setText(String.valueOf(scoresToShow[i].getScore()));
+            } else {
+                playerScoresTextViews.get(i).setText("");
+            }
         }
 
     }

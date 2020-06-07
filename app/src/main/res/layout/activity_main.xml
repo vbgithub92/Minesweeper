@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingBottom="40dp"
-        android:paddingHorizontal="60dp"
+        android:paddingHorizontal="40dp"
         >
 
         <!--
@@ -83,6 +83,7 @@
                     android:layout_weight="1"
                     android:textSize="20sp"
                     android:text="@string/easy"
+                    android:fontFamily="casual"
                     android:onClick="radioButtonClicked"
                     />
 
@@ -94,6 +95,7 @@
                     android:layout_weight="1"
                     android:textSize="20sp"
                     android:text="@string/normal"
+                    android:fontFamily="casual"
                     android:onClick="radioButtonClicked"
                     />
 
@@ -105,6 +107,7 @@
                     android:layout_weight="1"
                     android:textSize="20sp"
                     android:text="@string/hard"
+                    android:fontFamily="casual"
                     android:onClick="radioButtonClicked"
                     />
 
@@ -138,10 +141,10 @@
                     android:text="@string/leaderboards"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    android:fontFamily="sans-serif-black"
                     android:textColor="#000000"
                     android:textAlignment="center"
                     android:gravity="center"
+                    android:fontFamily="casual"
                     android:layout_gravity="center_horizontal">
 
                 </TextView>
@@ -159,6 +162,9 @@
             android:gravity="center"
             android:textSize="26sp"
             android:text="@string/play_button"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
             android:background="@drawable/roundedbutton"
             android:onClick="playButtonClicked"
             />

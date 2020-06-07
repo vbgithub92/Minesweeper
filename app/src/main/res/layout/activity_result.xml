@@ -33,8 +33,9 @@
             android:text="@string/game_result"
             android:textSize="40dp"
             android:layout_gravity="center"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            android:fontFamily="cursive"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
 
 
         <Space
@@ -44,23 +45,26 @@
 
 
         <TextView
+            android:id="@+id/endGameStatsPrompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mines_left"
-            android:textSize="26sp"
-            android:textColor="#000000"
+            android:textSize="30sp"
+            android:layout_gravity="center"
+            android:fontFamily="casual"
             android:textStyle="bold"
-            android:layout_gravity="center" />
+            android:textColor="#000000"/>
 
         <TextView
-            android:id="@+id/minesLeftAmount"
+            android:id="@+id/endGameStats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            android:textSize="26sp"
-            android:textColor="#000000"
-            android:textStyle="bold"
+            android:textSize="30sp"
             android:layout_gravity="center"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:textColor="#000000"
             />
 
         <Space
@@ -73,9 +77,10 @@
             android:layout_height="wrap_content"
             android:text="@string/finished_in"
             android:textSize="26sp"
-            android:textColor="#000000"
-            android:textStyle="bold"
             android:layout_gravity="center"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:textColor="#000000"
             />
 
         <TextView
@@ -84,9 +89,10 @@
             android:layout_height="wrap_content"
             android:text="0"
             android:textSize="26sp"
-            android:textColor="#000000"
-            android:textStyle="bold"
             android:layout_gravity="center"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:textColor="#000000"
             />
 
         <Space
@@ -101,6 +107,9 @@
             android:layout_gravity="center"
             android:text="@string/restart"
             android:textSize="26sp"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
             android:background="@drawable/roundedbutton"
             android:onClick="restartButtonClicked"/>
 
@@ -117,6 +126,9 @@
             android:layout_gravity="center"
             android:text="@string/exit"
             android:textSize="26sp"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
             android:background="@drawable/roundedbutton"
             android:onClick="exitButtonClicked"/>
 
