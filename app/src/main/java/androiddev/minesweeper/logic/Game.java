@@ -245,25 +245,21 @@ public class Game {
         return gameStrTime;
     }
 
-    public void fillAllFieldWithMines(int delay) {
-        wait(delay);
+    // returns true if new mine is added, return false if no more mines can be added
+    public boolean addOneMineToTheField() {
         for (int i = 0; i < difficulty.getBoardRowsNum(); i++) {
             for (int j = 0; j < difficulty.getBoardColsNum(); j++) {
                 if (!tiles[i][j].isMine() && !tiles[i][j].isTapped()) {
                     tiles[i][j].setMine(true);
                     numOfMinesLeft++;
+                    Log.d("TAG", "addOneMineToTheField: mine added");
+                    return true;
                 }
             }
         }
+        return false;
     }
 
-    public static void wait(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
 
     public Player getPlayer() {
         return player;

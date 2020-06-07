@@ -170,15 +170,6 @@ public class ResultActivity extends AppCompatActivity {
         System.exit(0);
     }
 
-    /* DEV */
-
-    public boolean checkHighScore(int score, Difficulty difficulty) {
-        // if highscore - balagan
-        if(true)
-            return true;
-        return false;
-    }
-
     public void openHighScoreDialog() {
 
         highScoreDialog = new Dialog(this);
