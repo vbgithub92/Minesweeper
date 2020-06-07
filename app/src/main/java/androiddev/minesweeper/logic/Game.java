@@ -17,6 +17,9 @@ public class Game {
     private boolean gameOver;
     private boolean gameWon;
 
+    private Player player;
+    private Scoreboard scoreboard;
+
     private Difficulty difficulty;
 
     public Game(Difficulty difficulty) {
@@ -27,7 +30,7 @@ public class Game {
     }
 
     public long getGameTime() {
-        return gameTime;
+        return System.currentTimeMillis() - getGameStrTime();
     }
 
     public int getFlaggedTilesCounter() {
@@ -51,7 +54,7 @@ public class Game {
                     numOfMinesLeft++;
             }
 
-            if (flaggedTilesCounter  == difficulty.getNumberOfMines() && numOfMinesLeft == 0)
+            if (flaggedTilesCounter == difficulty.getNumberOfMines() && numOfMinesLeft == 0)
                 endGame(true);
 
             if (flaggedTilesCounter < difficulty.getNumberOfMines()) {
@@ -138,7 +141,6 @@ public class Game {
     }
 
 
-
     private void setAdjacentMinesCount() {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[0].length; j++) {
@@ -205,9 +207,9 @@ public class Game {
     }
 
     private void initializeTiles(Tile[][] tiles) {
-        for(int i = 0 ; i < difficulty.getBoardRowsNum(); i++)
-            for (int j = 0 ; j < difficulty.getBoardColsNum();j++)
-                tiles[i][j] = new Tile(false,false,false,0);
+        for (int i = 0; i < difficulty.getBoardRowsNum(); i++)
+            for (int j = 0; j < difficulty.getBoardColsNum(); j++)
+                tiles[i][j] = new Tile(false, false, false, 0);
     }
 
     public int getNumOfMinesLeft() {
@@ -243,5 +245,39 @@ public class Game {
         return gameStrTime;
     }
 
+    public void fillAllFieldWithMines(int delay) {
+        wait(delay);
+        for (int i = 0; i < difficulty.getBoardRowsNum(); i++) {
+            for (int j = 0; j < difficulty.getBoardColsNum(); j++) {
+                if (!tiles[i][j].isMine() && !tiles[i][j].isTapped()) {
+                    tiles[i][j].setMine(true);
+                    numOfMinesLeft++;
+                }
+            }
+        }
+    }
 
+    public static void wait(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Scoreboard getScoreboard() {
+        return scoreboard;
+    }
+
+    public void setScoreboard(Scoreboard scoreboard) {
+        this.scoreboard = scoreboard;
+    }
 }
